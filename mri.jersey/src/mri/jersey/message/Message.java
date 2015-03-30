@@ -1,6 +1,8 @@
 package mri.jersey.message;
 
-/* annotation ? */
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Message {
 
   private Long id;

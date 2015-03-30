@@ -2,42 +2,51 @@ package mri.jersey.message;
 
 import java.util.List;
 
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import javax.xml.bind.JAXBElement;
 
-/* annotation */
+@Path("/messages")
 public class MessageResource {
 
-  /* annotations */
+  @GET
   public List<Message> getMessages() {
     System.out.println("retourne la liste des messages");
-    return null;
+    return MessageList.getInstance().getMessages();
   }
 
-  /* annotations */
-  public List<Message> getMessagesAfter(/* annotation */Long id) {
-    System.out.println("retourne la liste des messages après " + id);
-    // TODO : A COMPLETER
-    return null;
+  @GET
+  @Path("after/{id}")
+  @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+  public List<Message> getMessagesAfter(@PathParam("id")Long id) {
+    System.out.println("retourne la liste des messages apres " + id);
+    return MessageList.getInstance().getMessagesAfter(id);
   }
 
-  /* annotations */
+  @POST
   public Message create(JAXBElement<Message> message) {
     System.out.println("ajoute le message et retourne le message complet");
-    // TODO : A COMPLETER
-    return null;
+    return MessageList.getInstance().createMessage(message.getValue());
   }
 
-  /* annotations */
-  public Message getMessage(/* annotation */Long id) {
+  @GET
+  @Path("{id}")
+  @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+  public Message getMessage(@PathParam("id")Long id) {
     System.out.println("retourne le message d'id = " + id);
-    // TODO : A COMPLETER
-    return null;
+    return MessageList.getInstance().getMessage(id);
   }
 
-  /* annotations */
-  public void removeMessage(/* annotation */Long id) {
+  @DELETE
+  @Path("{id}")
+  public void removeMessage(@PathParam("id")Long id) {
     System.out.println("efface le message d'id = " + id);
-    // TODO : A COMPLETER
+    MessageList.getInstance().delMessage(id);
   }
 
 }

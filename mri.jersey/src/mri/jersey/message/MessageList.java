@@ -25,19 +25,19 @@ public class MessageList {
   }
 
   static {
-    // On utilise un bloc statique pour le debug et remplir la liste à la
-    // création de la classe
+    // On utilise un bloc statique pour le debug et remplir la liste ï¿½ la
+    // crï¿½ation de la classe
 
     Message m = new Message();
-    m.setContent("ceci est un test");
+    m.setContent("C'est pas faux");
     INSTANCE.createMessage(m);
 
     m = new Message();
-    m.setContent("test 2");
+    m.setContent("Moooooordduuuu");
     INSTANCE.createMessage(m);
 
     m = new Message();
-    m.setContent("test 3");
+    m.setContent("Camouflage edulcorant");
     INSTANCE.createMessage(m);
 
   }
