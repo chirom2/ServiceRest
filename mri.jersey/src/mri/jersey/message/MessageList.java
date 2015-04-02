@@ -28,6 +28,7 @@ public class MessageList {
     // On utilise un bloc statique pour le debug et remplir la liste � la
     // cr�ation de la classe
 
+	//Exemple de messages disponibles  
     Message m = new Message();
     m.setContent("C'est pas faux");
     INSTANCE.createMessage(m);

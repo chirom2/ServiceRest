@@ -21,8 +21,7 @@ public class ClientChat {
 	private static Scanner scanner = new Scanner(System.in);
 
 	/**
-	 * Lit au clavier. La saisie de l'utilisateur.
-	 * 
+	 * Lit au clavier. La saisie de l'utilisateur. 
 	 * @return String
 	 */
 	public static String lireClavier() {
