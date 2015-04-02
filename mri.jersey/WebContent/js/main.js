@@ -3,8 +3,15 @@ $(function() {
 	var rootURL = "http://localhost:8080/mri.jersey/rest";
 
 	var lastID = 0;
+	var fullUpdate;
 
 	function updateMessages() {
+		var url;
+		if(fullUpdate){
+			fullUpdate = false;
+			lastID = 0;
+			$('#chatContent').html("");
+		}
 		$.ajax({
 			type : 'GET',
 			url : rootURL + "/messages/after/" + lastID,
@@ -40,8 +47,6 @@ $(function() {
 				.append("</p>");
 
 		lastID = parseInt(message.id) + 1;
-		console.log(lastID + " computed from " + message.id);
-
 	}
 
 	function sendMessage(messageContent) {
@@ -69,7 +74,8 @@ $(function() {
 			contentType : 'application/json',
 			dataType : "json",
 			success : function(data) {
-				console.log("delete message");				
+				fullUpdate = true;
+				console.log("message deleted");
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
 				console.log('sendMessage error: ' + textStatus);
