@@ -30,7 +30,8 @@ $(function() {
 			}
 		});
 	}
-
+	
+	
 	function appendMessage(message) {
 		console.log(message);
 
@@ -61,6 +62,21 @@ $(function() {
 		});
 	}
 
+	function deleteMessage(id) {
+		$.ajax({
+			type : 'DELETE',
+			url : rootURL + "/messages/"+id,
+			contentType : 'application/json',
+			dataType : "json",
+			success : function(data) {
+				console.log("delete message");				
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				console.log('sendMessage error: ' + textStatus);
+			}
+		});
+	}
+	
 	function sendContent() {
 		var ligne = $("#ligne").val();
 		$("#ligne").val("");
@@ -71,6 +87,12 @@ $(function() {
 		sendContent();
 	});
 
+	$("#submitDelete").click(function() {
+		console.log("test "+$("#idMessage").val());
+		deleteMessage($("#idMessage").val());
+		$("#idMessage").val("");
+	});
+	
 	$(window).keydown(function(event) {
 		if (event.keyCode == 13) {
 			event.preventDefault();
